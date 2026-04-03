@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BootCode</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-glow glow-left"></div>
+    <div class="page-glow glow-right"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-mark">
+          <span class="brand-dot"></span>
+          <span>BootCode</span>
+        </div>
+        <div class="topbar-actions" id="topbarActions">
+          <button class="login-badge" id="openAuthButton" type="button">Вход</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">BootCode</p>
+          <h1>BootCode</h1>
+          <p class="hero-text">
+            Анкета, жизненные риски и AI-разбор простым языком. Сервис сохраняет профиль пользователя,
+            учитывает его жизненную ситуацию и переводит в чат, где можно спросить про переезд, жилье,
+            семью, бюджет и будущие риски.
+          </p>
+        </div>
+
+        <div class="hero-metrics">
+          <article class="metric-card metric-card-primary">
+            <span>Шаг 1</span>
+            <strong>Аккаунт и вход</strong>
+            <p>Регистрация, обычный вход и минимальный демо-вход через Госуслуги в одном интерфейсе.</p>
+          </article>
+          <article class="metric-card metric-card-soft">
+            <span>Шаг 2</span>
+            <strong>Анкета клиента</strong>
+            <p>Доход, город, жилье, семья, цели и будущие жизненные сценарии сохраняются в базе данных.</p>
+          </article>
+          <article class="metric-card metric-card-base">
+            <span>Шаг 3</span>
+            <strong>AI-разбор</strong>
+            <p>Ответ дается как понятная консультация сотрудника банка, коротко и по делу.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="panel intake-panel" id="intakePanel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">Шаг 1</p>
+              <h2>Анкета пользователя</h2>
+            </div>
+            <div class="status-badge" id="providerBadge">AI: local fallback</div>
+          </div>
+
+          <p class="panel-text">
+            Сначала войдите в аккаунт. После этого можно заполнить анкету вручную или быстро создать
+            демо-профиль через Госуслуги.
+          </p>
+
+          <div class="account-banner" id="accountBanner">
+            <strong>Вы не вошли в аккаунт.</strong>
+            <p>Нажмите “Вход” справа сверху, чтобы открыть регистрацию, логин или демо-вход через Госуслуги.</p>
+          </div>
+
+          <div class="intake-grid">
+            <form id="profileForm" class="profile-form">
+              <input type="hidden" name="intakeMode" value="manual" />
+
+              <label>
+                <span>ФИО</span>
+                <input name="fullName" placeholder="Иван Петров" required />
+              </label>
+
+              <label>
+                <span>Возраст</span>
+                <input name="age" type="number" min="18" max="100" placeholder="32" />
+              </label>
+
+              <label>
+                <span>Текущий город</span>
+                <input name="currentCity" placeholder="Москва" required />
+              </label>
+
+              <label>
+                <span>Целевой город</span>
+                <input name="targetCity" placeholder="Например, Санкт-Петербург" />
+              </label>
+
+              <label>
+                <span>Семейное положение</span>
+                <select name="familyStatus">
+                  <option value="">Не указано</option>
+                  <option>Не женат / не замужем</option>
+                  <option>В браке</option>
+                  <option>В отношениях</option>
+                  <option>Разведен(а)</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Количество детей</span>
+                <input name="childrenCount" type="number" min="0" max="10" placeholder="0" />
+              </label>
+
+              <label>
+                <span>Статус занятости</span>
+                <select name="employmentStatus">
+                  <option value="">Не указано</option>
+                  <option>Работаю по найму</option>
+                  <option>Самозанятый</option>
+                  <option>Предприниматель</option>
+                  <option>В поиске работы</option>
+                  <option>Учусь</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Профессия / сфера</span>
+                <input name="profession" placeholder="Финансовый аналитик" />
+              </label>
+
+              <label>
+                <span>Доход в месяц, руб.</span>
+                <input name="monthlyIncome" type="number" min="0" step="1000" placeholder="150000" />
+              </label>
+
+              <label>
+                <span>Накопления, руб.</span>
+                <input name="savings" type="number" min="0" step="10000" placeholder="1200000" />
+              </label>
+
+              <label>
+                <span>Жилищная ситуация</span>
+                <select name="housingStatus">
+                  <option value="">Не указано</option>
+                  <option>Снимаю жилье</option>
+                  <option>Живу в собственной квартире</option>
+                  <option>Живу с родителями / родственниками</option>
+                  <option>Есть ипотека</option>
+                </select>
+              </label>
+
+              <section class="field-wide scenario-block">
+                <div class="scenario-header">
+                  <span>Будущие жизненные сценарии</span>
+                  <p>Эти данные AI будет учитывать как риски для принятия решения.</p>
+                </div>
+
+                <div class="scenario-grid">
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Появление жены или совместное проживание" />Появление жены или совместное проживание</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Рождение ребенка" />Рождение ребенка</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Потеря работы" />Потеря работы</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Снижение дохода" />Снижение дохода</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Ипотека или новый кредит" />Ипотека или новый кредит</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Помощь родителям" />Помощь родителям</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Проблемы со здоровьем" />Проблемы со здоровьем</label>
+                  <label class="scenario-item"><input type="checkbox" name="lifeScenarios" value="Развод или расставание" />Развод или расставание</label>
+                </div>
+              </section>
+
+              <label class="field-wide">
+                <span>Дополнительные риски</span>
+                <textarea name="riskNotes" rows="3" placeholder="Например: возможна смена работы, помощь родственникам, нестабильный доход"></textarea>
+              </label>
+
+              <label class="field-wide">
+                <span>Главная цель</span>
+                <textarea name="goals" rows="3" placeholder="Например: переехать в другой город и понять, когда безопаснее покупать квартиру"></textarea>
+              </label>
+
+              <label class="field-wide">
+                <span>Дополнительные вводные</span>
+                <textarea name="extraNotes" rows="3" placeholder="Кредиты, здоровье, район, формат работы, школа, садик"></textarea>
+              </label>
+
+              <button class="primary-button" type="submit">Сохранить анкету и перейти в чат</button>
+            </form>
+
+            <aside class="esia-card">
+              <p class="panel-kicker">Быстрый сценарий</p>
+              <h3>Демо-вход через Госуслуги</h3>
+              <p>Минимальный интерфейс входа имитирует авторизацию через ЕСИА и сразу создает демонстрационный профиль.</p>
+
+              <div class="esia-mini">
+                <label>
+                  <span>ФИО</span>
+                  <input id="esiaName" placeholder="Мария Демонстрационная" />
+                </label>
+                <label>
+                  <span>Телефон</span>
+                  <input id="esiaPhone" placeholder="+7 (999) 000-11-22" />
+                </label>
+                <button class="secondary-button" id="esiaDemoButton" type="button">Войти через Госуслуги</button>
+              </div>
+
+              <div class="esia-note">
+                <strong>Что будет дальше</strong>
+                <p>После входа система создаст аккаунт, сохранит демо-профиль и откроет AI-чат.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="panel chat-panel hidden" id="chatPanel">
+          <div class="chat-sidebar">
+            <div class="panel-header compact">
+              <div>
+                <p class="panel-kicker">Шаг 2</p>
+                <h2>AI-чат</h2>
+              </div>
+              <button class="ghost-button" id="resetButton" type="button">Новая анкета</button>
+            </div>
+
+            <div class="profile-summary" id="profileSummary"></div>
+
+            <div class="quick-prompts">
+              <p class="panel-kicker">Быстрые сценарии</p>
+              <button type="button" class="chip-button" data-prompt="Разбери мой план переезда простым языком и по рискам.">Переезд и риски</button>
+              <button type="button" class="chip-button" data-prompt="Стоит ли мне сейчас покупать квартиру, если учитывать будущую семью и ребенка?">Квартира и семья</button>
+              <button type="button" class="chip-button" data-prompt="Сделай короткий разбор: можно, рано или рискованно.">Короткий разбор</button>
+            </div>
+          </div>
+
+          <div class="chat-main">
+            <div class="messages" id="messages"></div>
+
+            <form id="chatForm" class="chat-form">
+              <textarea id="chatInput" rows="4" placeholder="Например: хочу переехать в Москву, но боюсь, что в ближайший год появится ребенок и снизится доход" required></textarea>
+              <div class="chat-actions">
+                <p class="helper-text" id="statusText">Сначала войдите в аккаунт и сохраните анкету.</p>
+                <button class="primary-button" type="submit">Получить разбор</button>
+              </div>
+            </form>
+
+            <section class="sources-panel">
+              <div class="sources-header">
+                <p class="panel-kicker">Статистическая база</p>
+                <h3>Источники ответа</h3>
+              </div>
+              <div class="sources-list" id="sourcesList"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal hidden" id="authModal">
+      <div class="modal-backdrop" id="authBackdrop"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p class="panel-kicker">Аккаунт</p>
+            <h3>Вход и регистрация</h3>
+          </div>
+          <button class="modal-close" id="closeAuthButton" type="button">×</button>
+        </div>
+
+        <div class="auth-switcher">
+          <button class="auth-tab is-active" data-auth-tab="login" type="button">Вход</button>
+          <button class="auth-tab" data-auth-tab="register" type="button">Регистрация</button>
+          <button class="auth-tab" data-auth-tab="esia" type="button">Госуслуги</button>
+        </div>
+
+        <form class="auth-form" id="loginForm">
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" placeholder="name@example.com" required />
+          </label>
+          <label>
+            <span>Пароль</span>
+            <input name="password" type="password" placeholder="Минимум 6 символов" required />
+          </label>
+          <button class="primary-button auth-submit" type="submit">Войти</button>
+        </form>
+
+        <form class="auth-form hidden" id="registerForm">
+          <label>
+            <span>Имя</span>
+            <input name="name" placeholder="Иван Петров" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" placeholder="name@example.com" required />
+          </label>
+          <label>
+            <span>Пароль</span>
+            <input name="password" type="password" placeholder="Минимум 6 символов" required />
+          </label>
+          <button class="primary-button auth-submit" type="submit">Создать аккаунт</button>
+        </form>
+
+        <form class="auth-form hidden" id="esiaForm">
+          <label>
+            <span>ФИО</span>
+            <input name="fullName" placeholder="Мария Демонстрационная" required />
+          </label>
+          <label>
+            <span>Телефон</span>
+            <input name="phone" placeholder="+7 (999) 000-11-22" required />
+          </label>
+          <button class="secondary-button auth-submit" type="submit">Продолжить через Госуслуги</button>
+        </form>
+
+        <p class="auth-note" id="authNote">После входа можно сохранить анкету и пользоваться AI-чатом.</p>
+      </div>
+    </div>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <div class="message-role"></div>
+        <div class="message-body"></div>
+      </article>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

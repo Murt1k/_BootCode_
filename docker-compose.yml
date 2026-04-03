@@ -1,0 +1,18 @@
+services:
+  lifemap-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lifemap-app
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      PORT: ${PORT:-3000}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5.1}
+    volumes:
+      - lifemap_data:/app/data
+
+volumes:
+  lifemap_data:

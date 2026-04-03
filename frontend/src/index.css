@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bone text-ink antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(208, 230, 253, 0.78), transparent 28%),
+      radial-gradient(circle at top right, rgba(22, 38, 96, 0.08), transparent 22%),
+      linear-gradient(180deg, #f4ebdf 0%, #f7f2ea 100%);
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-10;
+  }
+
+  .glass-panel {
+    @apply border border-white/55 bg-white/55 backdrop-blur-xl;
+  }
+
+  .section-title {
+    @apply font-display text-4xl leading-none text-royal sm:text-5xl lg:text-6xl;
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-base leading-7 text-ink/70 sm:text-lg;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-royal/60;
+  }
+}
